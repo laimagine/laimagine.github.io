@@ -1,297 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on https://github.com/jonrohan -->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link href="./css/bootstrap.min.css" rel="stylesheet"></link>
-        <script src="./js/jquery.min.js"></script>
-        <script src="./js/bootstrap.min.js"></script>
-        <script src="./js/parse-1.6.12.min.js"></script>
-        <script src="cordova.js"></script>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-        <script>
-        	Parse.initialize("d4yPB9wjZfg9Z9fGVqEtIYx8uNvNfofbLXXYmn1g", "hszwsIscmDP8VrtZ5v4eKPbvRcR2NaPRWs01vTRX");
-        	var Parllez = Parse.Object.extend('parllez'),
-        		fnDisplayNextImage = function() {
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
+  <link rel="stylesheet" href="stylesheets/github-dark.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
 
-              $('.p-content').hide();
-        			if (currentIndex >= minIndex && currentIndex <= maxIndex) {
-                var parllez = retrievedItems[currentIndex];
-                fnSetImages(parllez);
-                fnSetThumbnails(parllez);
-                fnSetTextInDiv(parllez, 'prologue');
-                fnSetTextInDiv(parllez, 'story');
-                $('.p-content').show();
-                if (currentIndex <= 0) {
-                  $('.p-menu-left img').hide();
-                } else {
-                  $('.p-menu-left img').show();
-                }
-              } else {
-        				var parllez = new Parllez(),
-        						parllezQuery = new Parse.Query(Parllez);
-        				$('.message').html('Loading ...');
-        				parllezQuery.descending('updatedAt');
-        				parllezQuery.limit(10);
-        				parllezQuery.skip(currentIndex);
-        				parllezQuery.find({
-        					success: function(results) {
-        						if (results.length) {
-                      minIndex = minIndex + results.length;
-                      maxIndex = maxIndex + results.length;
-        							retrievedItems = results;
-        							$('.p-content').show();
-        							$('.message').hide();
-        							fnDisplayNextImage();
-        						} else {
-        							$('.message').html('More coming soon ...');
-        							$('.p-content').hide();
-        							$('.message').show();
-                      currentIndex = -1;
-                  		minIndex = -10;
-                      maxIndex = -1;
-        							retrievedItems = [];
-        						}
-        					},
-        					error: function(error) {
-        						$('.message').html(error);
-        						$('.content').hide();
-        						$('.message').show();
-                    $('.p-content').show();
-        					}
-        				});
-        			}
-        		},
-        		fnSetImages = function(parllez) {
-        			fnSetImage(parllez, 'image-1', 1);
-        			fnSetImage(parllez, 'image-2', 2);
-        			fnSetImage(parllez, 'image-3', 3);
-        			fnSetImage(parllez, 'image-4', 4);
-        		},
-        		fnSetThumbnails = function(parllez) {
-        			var fnHandleThumbnailclick = function(event) {
-        				event.preventDefault();
-        				var $target = $(event.target);
-        				$('.thumb').css('border', 'solid 1px');
-        				$target.css('border', 'solid 2px');
-        				fnSetMainImage(parllez, $target.attr('data-id'));
-        			}
-        			fnSetImage(parllez, 'thumb-1', 1);
-        			fnSetImage(parllez, 'thumb-2', 2);
-        			fnSetImage(parllez, 'thumb-3', 3);
-        			fnSetImage(parllez, 'thumb-4', 4);
+  <title>LA Imagine</title>
+  <meta name="description" content="It&#39;s the first step">
 
-        			$('.thumb-1').click();
-        		},
-        		fnSetImage = function(parllez, css, property) {
-        			$('.' + css).attr('src', parllez.get('image_' + property).url()).attr('data-id', property);
-        		},
-        		fnSetTextInDiv = function(parllez, property) {
-        			$('.' + property).html(parllez.get(property).replace(/~/g, '<p/>'));
-        		},
-        		currentIndex = -1,
-        		minIndex = -10,
-            maxIndex = -1,
-        		retrievedItems = [],
-        		init = function() {
-              $('.p-menu-right').click(function(event) {
-        				event.preventDefault();
-                currentIndex++;
-        				fnDisplayNextImage();
-        			});
-              $('.p-menu-left').click(function(event) {
-        				event.preventDefault();
-                currentIndex--;
-        				fnDisplayNextImage();
-        			});
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-              $('.about').click(function(event) {
-                event.preventDefault();
-                window.open('http://www.laimagine.com/tablleau', '_system');
-                return false;
-              });
-              $('.p-menu-right').click();
-        		}
-          $(document).ready(init);
-        </script>
-          <style type="text/css">
-            @media screen and (max-width: 360px) {
-              .logo {
-                font-size: 24px;
-              }
-              .prologue {
-                font-size: 18px;
-              }
-              .thumb img {
-                height: 30px;
-              }
-              body {
-                font-size: 14px;
-              }
-            }
-            @media screen and (min-width: 361px) {
-              .logo {
-                font-size: 32px;
-              }
-              .prologue {
-                font-size: 26px;
-              }
-              .thumb img {
-                height: 50px;
-              }
-              body {
-                font-size: 16px;
-              }
-            }
-            .about {
-              clear: both;
-              padding: 25px;
-            }
-            .image-section {
-              width: 100%;
-            }
-            .image {
-              height: auto;
-              width: 100%;
-            }
-        		.logo {
-              display: table-cell;
-              height: 24px;
-              margin-bottom: 1%;
-              width: 100%;
-            }
-            .text-section {
-      				clear: both;
-              padding-top: 10px;
-              width: 100%;
-            }.thumbs-section {
-              width: 100%;
-            }
-        		.p-menu {
-              display: table;
-              width: 100%;
-        			margin-bottom: 1%;
-            }
-        		.p-menu-left {
-              display: table-cell;
-        		  float: left;
-              padding-left: 10px;
-              width: 40px;
-            }
-        		.p-menu-right {
-              display: table-cell;
-        			float: right;
-              padding-right: 10px;
-              width: 40px;
-            }
-            .p-menu img {
-              height: 30px;
-            }
-            .p-container {
-              display: table;
-              height: 100%;
-              margin: auto;
-              max-width: 700px;
-              min-height: 100vh;
-              padding-top: 5px;
-              width: 100%;
-            }
-            .prologue {
-              border-top-style: solid;
-              border-top-width: thin;
-            }
-            .story {
-              background-color: white;
-              color: gray;
-              font-family: monospace;
-              padding: 10px;
-              padding-bottom: 40px;
-              text-align: left;
-            }
-            .thumb {
-        			float: left;
-              height: auto;
-              max-height: 100px;
-              padding: 2% 1% 2% 1%;
-            }.thumb img {
-              width: auto;
-            }
-            body {
-              background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url('./img/bk.jpg');
-              background-position: 50% 50% !important;
-              background-repeat: no-repeat;
-              background-size: cover !important;
-              background-attachment: fixed !important;
-              color: white;
-              font-family: 'Open Sans', sans-serif;
-              font-weight: 400 !important;
-              line-height: 1.5;
-              margin: 0;
-              text-align: center;
-              -webkit-font-smoothing: antialiased;
-            }
-        		img {
-        		  height: 100%;
-        		}
-            p {
-              height: 10px;
-            }
-          </style>
+</head>
 
-        <title>Tablleau</title>
-    </head>
+<body>
 
-    <body>
-    	<div class="p-container">
-    		<div class="p-menu">
-    			<span class="p-menu-left"><img src="./img/p.png"></img></span>
-          <div class="logo">TABLLEAU</div>
-    			<span class="p-menu-right"><img src="./img/n.png"></img></span>
-    		</div>
-    		<div class='p-content'>
-        <div class="prologue"></div>
-    	  <div class='image-section'>
-    	    <div class='carousel slide' data-ride='carousel' data-interval='false'>
-    	      <div class='carousel-inner' role='listbox'>
-    	        <div class='item active'>
-    	          <img class='image image-1' src='' style='display: initial;'></img>
-    	        </div>
-    	        <div class='item'>
-    	          <img class='image image-2' src='' style='display: initial;'></img>
-    	        </div>
-    	        <div class='item'>
-    	          <img class='image image-3' src='' style='display: initial;'></img>
-    	        </div>
-    	        <div class='item'>
-    	          <img class='image image-4' src='' style='display: initial;'></img>
-    	        </div>
-    	      </div>
-    	    </div>
-    	    <div class="thumb-section">
-    	      <div data-target='.carousel' data-slide-to='0' class='thumb active'>
-    	        <img class='thumb-1' src=''></img>
-    	      </div>
-    	      <div data-target='.carousel' data-slide-to='1' class='thumb'>
-    	        <img class='thumb-2' src=''></img>
-    	      </div>
-    	      <div data-target='.carousel' data-slide-to='2' class='thumb'>
-    	        <img class='thumb-3' src=''></img>
-    	      </div>
-    	      <div data-target='.carousel' data-slide-to='3' class='thumb'>
-    	        <img class='thumb-4' src=''></img>
-    	      </div>
-    	    </div>
-    		</div>
-        <div class="text-section">
-          <div class="story"></div>
+  <div class="wrapper">
+    <header>
+      <h1 class="title">LA Imagine</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">It&#39;s the first step</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/laimagine" class="code">View LA Imagine on GitHub</a>
         </div>
-    	</div>
-    	<div class='message'></div>
-    	<div class='about'>about</div>
-    	</div>
-    </body>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h3>
+<a id="welcome-to-la-imagines-github-repository" class="anchor" href="#welcome-to-la-imagines-github-repository" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to LA Imagine's github repository.</h3>
 
+<p>This page serves as a sitemap-ish thingy providing references to all LA Imagine's projects. Have fun exploring.</p>
+
+<h3>
+<a id="lluna" class="anchor" href="#lluna" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lluna</h3>
+
+<p>Lluna is a password management system that does NOT store your passwords. In addition to that, Lluna removes all complications involved with creating, remembering, saving and retrieving passwords without having to deal with any of the hassles associated. </p>
+
+<ul>
+<li><a href="http://www.laimagine.com/lluna.html">More Information: http://www.laimagine.com/lluna.html</a></li>
+<li><a href="https://github.com/laimagine/lluna">Repository: https://github.com/laimagine/lluna</a></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.laimagine.lluna">Google Play: https://play.google.com/store/apps/details?id=com.laimagine.lluna</a></li>
+<li>Apple Store: Coming soon</li>
+</ul>
+
+<h3>
+<a id="tablleau" class="anchor" href="#tablleau" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tablleau</h3>
+
+<p>Tablleau is a platform that documents some of the most meaningful tattoos and the stories behind them. Tablleau can be experienced as a blog as well as a mobile app.</p>
+
+<ul>
+<li><a href="http://www.laimagine.com/tablleau">Blog: http://www.laimagine.com/tablleau</a></li>
+<li><a href="https://github.com/laimagine/tablleau">Repository: https://github.com/laimagine/tablleau</a></li>
+<li>Google Play: Coming soon</li>
+<li>Apple Store: Coming soon</li>
+</ul>
+
+<h3>
+<a id="llivre" class="anchor" href="#llivre" aria-hidden="true"><span class="octicon octicon-link"></span></a>Llivre</h3>
+
+<p>Coming soon</p>
+
+<h3>
+<a id="contact" class="anchor" href="#contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contact</h3>
+
+<p><a href="http://www.laimagine.com">LA Imagine: http://www.laimagine.com</a></p>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+
+      <p><a href="https://github.com/laimagine" class="avatar"><img src="https://avatars2.githubusercontent.com/u/15907576?v=3&amp;s=60" width="48" height="48"></a>View <a href="https://github.com/laimagine">laimagine</a> on <a href="https://www.github.com">GitHub</a></p>
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/laimagine/laimagine.github.io/tarball/master" class="tar">tar</a><a href="https://github.com/laimagine/laimagine.github.io/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
 </html>
