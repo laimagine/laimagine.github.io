@@ -26,9 +26,9 @@
                 fnSetTextInDiv(parllez, 'story');
                 $('.p-content').show();
                 if (currentIndex <= 0) {
-                  $('.p-menu-left').hide();
+                  $('.p-menu-left img').hide();
                 } else {
-                  $('.p-menu-left').show();
+                  $('.p-menu-left img').show();
                 }
               } else {
         				var parllez = new Parllez(),
@@ -118,105 +118,97 @@
           $(document).ready(init);
         </script>
           <style type="text/css">
-             @media screen and (max-width: 720px) {
-              .image-section {
-                width: 100%;
-              }
-              .image {
-                height: auto;
-                width: 100%;
-              }
+            @media screen and (max-width: 360px) {
               .logo {
-                font-size: 22px;
-                height: 24px;
+                font-size: 24px;
               }
               .prologue {
-                font-size: 20px;
-              }
-              .thumbs-section {
-                width: 100%;
-              }
-              .text-section {
-        				clear: both;
-                padding-top: 10px;
-                width: 100%;
+                font-size: 18px;
               }
               .thumb img {
                 height: 30px;
-                width: auto;
               }
-             }
-            @media screen and (min-width: 721px) {
-               .image-section {
-                 float: left;
-        				 padding-left: 25px;
-                 width: 58%;
-               }
-               .logo {
-                 font-size: 32px;
-                 height: 50px;
-               }
-               .prologue {
-                 font-size: 32px;
-               }
-              .text-section {
-                float: right;
-                width: 40%;
+              body {
+                font-size: 14px;
+              }
+            }
+            @media screen and (min-width: 361px) {
+              .logo {
+                font-size: 32px;
+              }
+              .prologue {
+                font-size: 26px;
               }
               .thumb img {
                 height: 50px;
-                width: auto;
+              }
+              body {
+                font-size: 16px;
               }
             }
-        		.about {
-        			clear: both;
-        			padding-top: 25px;
-        		}
+            .about {
+              clear: both;
+              padding: 25px;
+            }
+            .image-section {
+              width: 100%;
+            }
             .image {
-               width: 100%;
-             }
-        		 .logo {
-               display: table-cell;
-               margin-bottom: 1%;
-               width: 100%;
-             }
-        		 .p-menu {
-               display: table;
-               width: 100%;
-        			 margin-bottom: 1%;
-             }
-        		 .p-menu-left {
-               display: table-cell;
-        			 float: left;
-               padding-left: 10px;
-             }
-        		 .p-menu-right {
-               display: table-cell;
-        			 float: right;
-               padding-right: 10px;
-             }
-             .p-menu img {
-               height: 30px;
-             }
+              height: auto;
+              width: 100%;
+            }
+        		.logo {
+              display: table-cell;
+              height: 24px;
+              margin-bottom: 1%;
+              width: 100%;
+            }
+            .text-section {
+      				clear: both;
+              padding-top: 10px;
+              width: 100%;
+            }.thumbs-section {
+              width: 100%;
+            }
+        		.p-menu {
+              display: table;
+              width: 100%;
+        			margin-bottom: 1%;
+            }
+        		.p-menu-left {
+              display: table-cell;
+        		  float: left;
+              padding-left: 10px;
+              width: 40px;
+            }
+        		.p-menu-right {
+              display: table-cell;
+        			float: right;
+              padding-right: 10px;
+              width: 40px;
+            }
+            .p-menu img {
+              height: 30px;
+            }
             .p-container {
-              background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url('./img/bk.jpg');
-              background-repeat: no-repeat;
-              background-size: cover !important;
-              background-attachment: fixed !important;
+              display: table;
               height: 100%;
+              margin: auto;
+              max-width: 700px;
+              min-height: 100vh;
               padding-top: 5px;
               width: 100%;
-              min-height: 100vh;
-              background-position: 50% 50% !important;
-              position: absolute;
-              display: table;
             }
             .prologue {
               border-top-style: solid;
               border-top-width: thin;
             }
             .story {
-              margin-left: 10px;
+              background-color: white;
+              color: gray;
+              font-family: monospace;
+              padding: 10px;
+              padding-bottom: 40px;
               text-align: left;
             }
             .thumb {
@@ -224,9 +216,16 @@
               height: auto;
               max-height: 100px;
               padding: 2% 1% 2% 1%;
+            }.thumb img {
+              width: auto;
             }
             body {
-        			color: white;
+              background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url('./img/bk.jpg');
+              background-position: 50% 50% !important;
+              background-repeat: no-repeat;
+              background-size: cover !important;
+              background-attachment: fixed !important;
+              color: white;
               font-family: 'Open Sans', sans-serif;
               font-weight: 400 !important;
               line-height: 1.5;
@@ -237,6 +236,9 @@
         		img {
         		  height: 100%;
         		}
+            p {
+              height: 10px;
+            }
           </style>
 
         <title>Tablleau</title>
